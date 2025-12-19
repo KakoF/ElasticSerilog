@@ -29,7 +29,11 @@ namespace ElasticSerilog.Common
 
 			builder.Host.UseSerilog();
 
-		}
+            // Remover ou manter o logging padrão (opcional)
+            builder.Logging.ClearProviders(); // Remove os provedores padrão
+            builder.Logging.AddSerilog(); // Usa Serilog como único provedor
+
+        }
 
 		public static void AddDocumentation(this WebApplicationBuilder builder)
         {

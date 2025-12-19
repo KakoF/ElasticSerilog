@@ -29,35 +29,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-
-/*void ConfigureLogging()
-{
-	var environment = Environment.GetEnvironmentVariable("APSNETCORE_ENVIRONMENT");
-	var configuration = new ConfigurationBuilder()
-		.AddJsonFile("appsetings.json", optional: false, reloadOnChange: true)
-		.AddJsonFile($"appsetings.{environment}.json", optional: true)
-		.Build();
-
-	Log.Logger = new LoggerConfiguration()
-		.Enrich.FromLogContext()
-		.Enrich.WithExceptionDetails()
-		.WriteTo.Debug()
-		.WriteTo.Console()
-		.WriteTo.Elasticsearch(ConfigureElasticSink(configuration, environment!))
-		.Enrich.WithProperty("Environment", environment)
-		.Enrich.WithProperty("HostName", System.Net.Dns.GetHostName())
-		.ReadFrom.Configuration(configuration: configuration)
-		.CreateLogger();
-}
-
-ElasticsearchSinkOptions ConfigureElasticSink(IConfigurationRoot configuration, string environment)
-{
-	return new ElasticsearchSinkOptions(new Uri(configuration["ElasticConfiguration:Uri"]!)) 
-	{
-		AutoRegisterTemplate = true,
-		IndexFormat = $"{Assembly.GetExecutingAssembly().GetName().Name!.ToLower().Replace(".", "-")}-{environment.ToLower()}-{DateTime.UtcNow:yyyy-MM}",
-		NumberOfReplicas = 1,
-		NumberOfShards = 2,
-	};
-}*/
