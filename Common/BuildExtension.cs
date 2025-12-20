@@ -62,7 +62,7 @@ namespace ElasticSerilog.Common
 			return new ElasticsearchSinkOptions(new Uri(configuration["ElasticConfiguration:Uri"]!))
 			{
 				AutoRegisterTemplate = true,
-				IndexFormat = $"{Assembly.GetExecutingAssembly().GetName().Name!.ToLower().Replace(".", "-")}-{environment.ToLower()}-{DateTime.UtcNow:yyyy-MM}",
+				IndexFormat = $"{Assembly.GetExecutingAssembly().GetName().Name!.ToLower().Replace(".", "-")}-{environment.ToLower()}-{DateTime.Now:yyyy-MM-dd}",
 				NumberOfReplicas = 1,
 				NumberOfShards = 2,
 			};

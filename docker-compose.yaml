@@ -1,11 +1,17 @@
-version: '3.1'
-
 services:
   elasticsearch:
     container_name: els
     image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
     ports:
       - 9200:9200
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '512M'
+        reservations:
+          cpus: '0.1'
+          memory: '256M'
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
     environment:
@@ -26,9 +32,27 @@ services:
     networks:
       - elastic
 
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '512M'
+        reservations:
+          cpus: '0.1'
+          memory: '256M'
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    networks:
+      - elastic
+
 networks:
   elastic:
     driver: bridge
 
 volumes:
+  grafana-storage:    
   elasticsearch-data: 
