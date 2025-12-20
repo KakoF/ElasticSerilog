@@ -290,7 +290,7 @@
           "timeField": "@timestamp"
         }
       ],
-      "title": "Panel Title",
+      "title": "Time Series Logs",
       "type": "timeseries"
     },
     {
@@ -429,7 +429,7 @@
           "timeField": "@timestamp"
         }
       ],
-      "title": "Panel Title",
+      "title": "Message Logs",
       "transformations": [
         {
           "id": "organize",
@@ -496,7 +496,7 @@
       "type": "table"
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "revision": 1,
   "schemaVersion": 38,
   "style": "dark",
@@ -512,6 +512,10 @@
           "value": [
             "$__all"
           ]
+        },
+        "datasource": {
+          "type": "elasticsearch",
+          "uid": "rLfFEz7vz"
         },
         "definition": "{\"find\": \"terms\", \"field\": \"level.raw\"}\n",
         "hide": 0,
@@ -529,13 +533,13 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Logs",
   "uid": "gKHbyznDk",
-  "version": 9,
+  "version": 10,
   "weekStart": ""
 }
