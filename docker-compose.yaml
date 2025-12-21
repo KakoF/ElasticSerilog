@@ -49,6 +49,47 @@ services:
     networks:
       - elastic
 
+  api:
+    container_name: application_1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5121:8080"  # Externo:Interno
+    networks:
+      - elastic
+    environment:
+        ASPNETCORE_ENVIRONMENT: Production
+        ElasticConfiguration__Uri: http://els:9200
+
+   
+  api_2:
+    container_name: application_2
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5131:8080"  # Externo:Interno
+    networks:
+      - elastic
+    environment:
+        ASPNETCORE_ENVIRONMENT: Production
+        ElasticConfiguration__Uri: http://els:9200
+ 
+
+  api_3:
+    container_name: application_3
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5141:8080"  # Externo:Interno
+    networks:
+      - elastic
+    environment:
+        ASPNETCORE_ENVIRONMENT: Production
+        ElasticConfiguration__Uri: http://els:9200
+
 networks:
   elastic:
     driver: bridge

@@ -1,8 +1,4 @@
 using ElasticSerilog.Common;
-using Serilog;
-using Serilog.Exceptions;
-using Serilog.Sinks.Elasticsearch;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +15,7 @@ builder.ConfigureLogging();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+//if (app.Environment.IsDevelopment())
 	app.ConfigureDevEnvironment();
 
 app.UseHttpsRedirection();
