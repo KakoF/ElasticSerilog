@@ -301,6 +301,183 @@
       "fieldConfig": {
         "defaults": {
           "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Error"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.drawStyle",
+                "value": "bars"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Throughput"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "text",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.drawStyle",
+                "value": "line"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "alias": "Throughput",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "1m"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "rLfFEz7vz"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "_index: elasticserilog-*",
+          "refId": "A",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "Error",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "1m"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "rLfFEz7vz"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "_index: elasticserilog-* AND level: Error",
+          "refId": "D",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Time Series Logs",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "rLfFEz7vz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
             "fixedColor": "transparent",
             "mode": "fixed"
           },
@@ -390,7 +567,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 8
+        "y": 16
       },
       "id": 2,
       "options": {
@@ -424,7 +601,7 @@
               "type": "raw_data"
             }
           ],
-          "query": "_index: elasticserilog-* AND level:$Log_Level",
+          "query": "_index: elasticserilog-* AND level: $Log_Level",
           "refId": "A",
           "timeField": "@timestamp"
         }
@@ -507,39 +684,53 @@
         "current": {
           "selected": true,
           "text": [
-            "All"
+            "Warning"
           ],
           "value": [
-            "$__all"
+            "Warning"
           ]
         },
-        "datasource": {
-          "type": "elasticsearch",
-          "uid": "rLfFEz7vz"
-        },
-        "definition": "{\"find\": \"terms\", \"field\": \"level.raw\"}\n",
         "hide": 0,
         "includeAll": true,
         "multi": true,
         "name": "Log_Level",
-        "options": [],
-        "query": "{\"find\": \"terms\", \"field\": \"level.raw\"}\n",
-        "refresh": 1,
-        "regex": "",
+        "options": [
+          {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "Information",
+            "value": "Information"
+          },
+          {
+            "selected": true,
+            "text": "Warning",
+            "value": "Warning"
+          },
+          {
+            "selected": false,
+            "text": "Error",
+            "value": "Error"
+          }
+        ],
+        "query": "Information, Warning, Error",
+        "queryValue": "",
         "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
+        "type": "custom"
       }
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Logs",
   "uid": "gKHbyznDk",
-  "version": 10,
+  "version": 13,
   "weekStart": ""
 }

@@ -15,8 +15,10 @@ services:
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
     environment:
-      - xpack.security.enabled=false
+      - xpack.security.enabled=true
       - discovery.type=single-node
+      - ELASTIC_PASSWORD=elastic_password
+      - ELASTIC_USERNAME=elastic
     networks:
       - elastic
 
@@ -28,7 +30,7 @@ services:
     depends_on:
       - elasticsearch
     environment:
-      - ELASTICSEARCH_URL=http://localhost:9200
+      - ELASTICSEARCH_URL=http://elastic:elastic_password@localhost:9200
     networks:
       - elastic
 
@@ -60,7 +62,7 @@ services:
       - elastic
     environment:
         ASPNETCORE_ENVIRONMENT: Production
-        ElasticConfiguration__Uri: http://els:9200
+        ElasticConfiguration__Uri: http://elastic:elastic_password@els:9200
 
    
   api_2:
@@ -74,7 +76,7 @@ services:
       - elastic
     environment:
         ASPNETCORE_ENVIRONMENT: Production
-        ElasticConfiguration__Uri: http://els:9200
+        ElasticConfiguration__Uri: http://elastic:elastic_password@els:9200
  
 
   api_3:
@@ -88,7 +90,7 @@ services:
       - elastic
     environment:
         ASPNETCORE_ENVIRONMENT: Production
-        ElasticConfiguration__Uri: http://els:9200
+        ElasticConfiguration__Uri: http://elastic:elastic_password@els:9200
 
 networks:
   elastic:
