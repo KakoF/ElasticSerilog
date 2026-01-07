@@ -38,6 +38,7 @@ services:
       - ELASTICSEARCH_PASSWORD=kibana_password # Senha gerada no comentário abaixo
       - XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY=AAEAAWVsYXN0aWMva2liYW5hL2RlZmF1bHQ6MXMxcnF3RHRUaU9NWWZPeGU3TTMzUQ
       #- ELASTICSEARCH_SERVICEACCOUNT_TOKEN=AAEAAWVsYXN0aWMva2liYW5hL2RlZmF1bHQ6MXMxcnF3RHRUaU9NWWZPeGU3TTMzUQ
+      #docker compose up -d elasticsearch
       #docker exec -it els bash
       #bin/elasticsearch-service-tokens create elastic/kibana default
       #output: SERVICE_TOKEN elastic/kibana/default = AAEAAWVsYXN0aWMva2liYW5hL2RlZmF1bHQ6cXMtN0ZmSG5RYTZaZFlXVVo1WlgtUQ
