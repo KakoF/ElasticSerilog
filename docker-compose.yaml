@@ -41,7 +41,9 @@ services:
       #docker compose up -d elasticsearch
       #docker exec -it els bash
       #bin/elasticsearch-service-tokens create elastic/kibana default
+      #Exemplo de output:
       #output: SERVICE_TOKEN elastic/kibana/default = AAEAAWVsYXN0aWMva2liYW5hL2RlZmF1bHQ6cXMtN0ZmSG5RYTZaZFlXVVo1WlgtUQ
+      #Colocar o token gerado no XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY
 
       #docker exec -it els bash
       # Redefina a senha do kibana_system
