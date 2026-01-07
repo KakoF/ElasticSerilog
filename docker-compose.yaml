@@ -35,7 +35,7 @@ services:
     environment:
       - ELASTICSEARCH_HOSTS=http://els:9200
       - ELASTICSEARCH_USERNAME=kibana_system
-      - ELASTICSEARCH_PASSWORD=kibana_password # Mesma senha do Elasticsearch
+      - ELASTICSEARCH_PASSWORD=kibana_password # Senha gerada no comentário abaixo
       - XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY=AAEAAWVsYXN0aWMva2liYW5hL2RlZmF1bHQ6MXMxcnF3RHRUaU9NWWZPeGU3TTMzUQ
       #- ELASTICSEARCH_SERVICEACCOUNT_TOKEN=AAEAAWVsYXN0aWMva2liYW5hL2RlZmF1bHQ6MXMxcnF3RHRUaU9NWWZPeGU3TTMzUQ
       #docker exec -it els bash
