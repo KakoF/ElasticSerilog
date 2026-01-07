@@ -13,7 +13,16 @@ namespace ElasticSerilog.Controllers
 			_logger = logger;
 		}
 
-		[HttpGet("Information")]
+        [HttpGet("Parameters")]
+        public string Parameters()
+        {
+            var varivel1 = "Valor aleatório para variável";
+            var outro = "Outro exemplo";
+            _logger.LogInformation("Exemplo de log de Information como variaveis {varivel1} - {outro}", varivel1, outro);
+            return "Parameters";
+        }
+
+        [HttpGet("Information")]
 		public string Information()
 		{
 			_logger.LogInformation("Exemplo de log de Information");
@@ -32,7 +41,6 @@ namespace ElasticSerilog.Controllers
         {
 			try
 			{
-                _logger.LogError("Exemplo de log de Error");
                 throw new Exception("Custom message Exception");
             }
 			catch (Exception ex)
