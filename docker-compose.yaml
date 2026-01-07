@@ -19,6 +19,9 @@ services:
       - discovery.type=single-node
       - ELASTIC_PASSWORD=elastic_password
       - ELASTIC_USERNAME=elastic
+      - KIBANA_PASSWORD=kibana_password
+      - xpack.security.authc.api_key.enabled=true
+      - xpack.security.enrollment.enabled=true
     networks:
       - elastic
 
@@ -30,7 +33,20 @@ services:
     depends_on:
       - elasticsearch
     environment:
-      - ELASTICSEARCH_URL=http://elastic:elastic_password@localhost:9200
+      - ELASTICSEARCH_HOSTS=http://els:9200
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=kibana_password # Mesma senha do Elasticsearch
+      - XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY=AAEAAWVsYXN0aWMva2liYW5hL2RlZmF1bHQ6MXMxcnF3RHRUaU9NWWZPeGU3TTMzUQ
+      #- ELASTICSEARCH_SERVICEACCOUNT_TOKEN=AAEAAWVsYXN0aWMva2liYW5hL2RlZmF1bHQ6MXMxcnF3RHRUaU9NWWZPeGU3TTMzUQ
+      #docker exec -it els bash
+      #bin/elasticsearch-service-tokens create elastic/kibana default
+      #output: SERVICE_TOKEN elastic/kibana/default = AAEAAWVsYXN0aWMva2liYW5hL2RlZmF1bHQ6cXMtN0ZmSG5RYTZaZFlXVVo1WlgtUQ
+
+      #docker exec -it els bash
+      # Redefina a senha do kibana_system
+      #bin/elasticsearch-reset-password -u kibana_system -i
+      #kibana_password
+  
     networks:
       - elastic
 
