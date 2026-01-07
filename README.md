@@ -67,12 +67,24 @@ Integra Serilog com o sistema de logging do ASP.NET Core
 
 4. Configuração de Níveis de Log (appsettings.json)
 json
-"Logging": {
-  "LogLevel": {
-    "Default": "Information",
-    "Microsoft.AspNetCore": "Warning"
-  }
-}
+"Serilog": {
+    "MinimumLevel": {
+      "Default": "Information",
+      "Override": {
+        // ASP.NET Core
+        "Microsoft.AspNetCore": "Warning",
+        "Microsoft.AspNetCore.Hosting": "Warning",
+        "ElasticSerilog.Controllers": "Information", //NamespaceDaAplicacao.Controllers
+
+        "Microsoft.Hosting.Lifetime": "Information", // Startup/shutdown
+        "Microsoft.Extensions.Hosting": "Warning",
+
+        // HTTP/API
+        "Microsoft.AspNetCore.HttpLogging": "Information", // Logs de requests
+        "System.Net.Http": "Warning"
+      }
+    }
+  },
 ```
 - Default: Nível Information para logs da aplicação
 
@@ -93,7 +105,7 @@ ASPNETCORE_ENVIRONMENT: Define o ambiente (Development/Staging/Production)
 #### Configuração do Elasticsearch (appsettings.json)
 ```json
 "ElasticConfiguration": {
-  "Uri": "http://localhost:9200"
+    "Uri": "http://elastic:elastic_password@localhost:9200"
 }
 ```
 ### Como Usar
