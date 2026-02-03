@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.AddDocumentation();
 
 builder.ConfigureLogging();
-
+builder.AddClients();
 
 var app = builder.Build();
 

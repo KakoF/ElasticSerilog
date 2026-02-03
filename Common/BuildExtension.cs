@@ -1,4 +1,5 @@
 ﻿
+using Infrastructure.Clients;
 using Serilog;
 using Serilog.Exceptions;
 using Serilog.Sinks.Elasticsearch;
@@ -56,6 +57,17 @@ namespace ElasticSerilog.Common
         public static void AddServices(this WebApplicationBuilder builder)
         {
 
+        }
+        public static void AddClients(this WebApplicationBuilder builder)
+        {
+			builder.Services.AddHttpClient<AdviceClient>(client =>
+            {
+                client.BaseAddress = new Uri(builder.Configuration["CLients:Advice:BasePath"]!);
+            }); 
+            builder.Services.AddHttpClient<ChuckNorrisClient>(client =>
+            {
+                client.BaseAddress = new Uri(builder.Configuration["CLients:ChuckNorris:BasePath"]!);
+            });
         }
 
 		public static ElasticsearchSinkOptions ConfigureElasticSink(IConfigurationRoot configuration, string environment)
