@@ -1,5 +1,5 @@
 ﻿
-using Infrastructure.Clients;
+using ElasticSerilog.Clients;
 using Serilog;
 using Serilog.Exceptions;
 using Serilog.Sinks.Elasticsearch;

@@ -1,4 +1,4 @@
-using Infrastructure.Clients;
+using ElasticSerilog.Clients;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ElasticSerilog.Controllers
@@ -22,13 +22,13 @@ namespace ElasticSerilog.Controllers
         [HttpGet("Advice")]
         public async Task<string> Advice()
         {
-            return await _adviceClient.Get();
+            return await _adviceClient.GetAdviceAsync();
         }
 
         [HttpGet("ChuckNorris")]
 		public async Task<string> ChuckNorris()
 		{
-            return await _chuckClient.Get();
+            return await _chuckClient.GetJokeAsync();
         }
 	}
 }

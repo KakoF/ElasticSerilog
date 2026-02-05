@@ -82,6 +82,8 @@ services:
     environment:
         ASPNETCORE_ENVIRONMENT: Production
         ElasticConfiguration__Uri: http://elastic:elastic_password@els:9200
+        CLients__Advice__BasePath: https://api.adviceslip.com/
+        CLients__ChuckNorris__BasePath: https://api.chucknorris.io/
 
    
   api_2:
@@ -96,6 +98,8 @@ services:
     environment:
         ASPNETCORE_ENVIRONMENT: Production
         ElasticConfiguration__Uri: http://elastic:elastic_password@els:9200
+        CLients__Advice__BasePath: https://api.adviceslip.com/
+        CLients__ChuckNorris__BasePath: https://api.chucknorris.io/
  
 
   api_3:
@@ -110,6 +114,8 @@ services:
     environment:
         ASPNETCORE_ENVIRONMENT: Production
         ElasticConfiguration__Uri: http://elastic:elastic_password@els:9200
+        CLients__Advice__BasePath: https://api.adviceslip.com/
+        CLients__ChuckNorris__BasePath: https://api.chucknorris.io/
 
 networks:
   elastic:
