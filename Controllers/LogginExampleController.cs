@@ -50,5 +50,13 @@ namespace ElasticSerilog.Controllers
             }
            
         }
+
+		[HttpGet("OtherError")]
+		public string OtherError()
+		{
+            throw new Exception("OtherError");
+            return "Something";
+
+		}
 	}
 }
